@@ -1,7 +1,7 @@
 # react-native-portal
+A forked version of [react-native-portal](https://www.npmjs.com/package/react-native-portal) thats maintained, the npm version is not accepting PR's and is not maintained.
 
-[![npm version](https://badge.fury.io/js/react-native-portal.svg)](https://badge.fury.io/js/react-native-portal) [![Build Status](https://travis-ci.com/zenyr/react-native-portal.svg?branch=master)](https://travis-ci.com/zenyr/react-native-portal)
-
+# Introduction
 Translocate your render destination. Using [`mitt`](https://npm.im/mitt). Built with `react@16` and `react-native` in mind, but these are not strictly required, as long as `React.PureComponent` is available.
 
 The code itself is very minimal and only rely on react's `context`, and written in `ES6`.
