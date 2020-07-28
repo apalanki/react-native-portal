@@ -38,7 +38,7 @@ export class PortalProvider extends React.Component {
     this._emitter = null;
   }
 
-  // 변경시 통지 요청 등록
+  // Registration of notification requests when changes are made
   portalSub = (name, callback) => {
     const emitter = this._emitter;
     if (emitter) {
@@ -46,7 +46,7 @@ export class PortalProvider extends React.Component {
     }
   };
 
-  // 변경시 통지 요청 해제
+  // Release notification request when changing
   portalUnsub = (name, callback) => {
     const emitter = this._emitter;
     if (emitter) {
@@ -54,7 +54,7 @@ export class PortalProvider extends React.Component {
     }
   };
 
-  // 변경
+  // on change
   portalSet = (name, value) => {
     this.portals.set(name, value);
     if (this._emitter) {
@@ -70,7 +70,7 @@ export class PortalProvider extends React.Component {
   }
 }
 
-export class BlackPortal extends React.PureComponent {
+export class BlackPortal extends React.Component {
   static contextTypes = oContextTypes;
   props: {
     name: string,
@@ -81,13 +81,14 @@ export class BlackPortal extends React.PureComponent {
     const { portalSet } = this.context;
     portalSet && portalSet(name, children);
   }
-  componentWillReceiveProps(newProps) {
+  shouldComponentUpdate(nextProps) {
     const oldProps = this.props;
-    const { name, children } = newProps;
+    const { name, children } = nextProps;
     const { portalSet } = this.context;
-    if (oldProps.children != newProps.children) {
+    if (oldProps.children !== nextProps.children) {
       portalSet && portalSet(name, children);
     }
+    return false
   }
   componentWillUnmount() {
     const { name } = this.props;
@@ -95,7 +96,6 @@ export class BlackPortal extends React.PureComponent {
     portalSet && portalSet(name, null);
   }
   render() {
-    const { name } = this.props;
     return null;
   }
 }
@@ -107,7 +107,7 @@ export class WhitePortal extends React.PureComponent {
     children?: *,
     childrenProps?: *,
   };
-  componentWillMount() {
+  componentDidMount() {
     const { name } = this.props;
     const { portalSub } = this.context;
     portalSub && portalSub(name, this.forceUpdater);
