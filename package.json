@@ -28,9 +28,9 @@
   "homepage": "https://github.com/zenyr/react-native-portal",
   "license": "MIT",
   "dependencies": {
-    "mitt": "*",
+    "mitt": "^2.1.0",
     "prop-types": "*",
-    "react": "*"
+    "react": "^16.8.0"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
@@ -54,6 +54,7 @@
     "rollup-plugin-uglify": "^2.0.1"
   },
   "jest": {
+    "testURL": "http://localhost/",
     "transform": {
       "^.+\\.jsx?$": "babel-jest"
     }
